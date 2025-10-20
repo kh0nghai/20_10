@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Chúc mừng 20/10</title>
+<style>
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(180deg,#fff7f9,#ffeef5);
+    font-family:Inter, system-ui, sans-serif;
+  }
+  .card{
+    width:90%;
+    max-width:700px;
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    overflow:hidden;
+    text-align:center;
+    padding:30px;
+  }
+  h1{
+    color:#ff6fa3;
+    margin:0 0 10px;
+  }
+  p{color:#555;font-size:17px;margin:0 0 20px;}
+  .img-box img{
+    width:30%;
+    border-radius:14px;
+  }
+  .controls{
+    margin-top:15px;
+  }
+  button{
+    background:#ff6fa3;
+    color:#fff;
+    border:none;
+    padding:8px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+  }
+  button:hover{
+    background:#ff85b3;
+  }
+  input[type="range"]{
+    width:150px;
+    margin-left:10px;
+  }
+  .footer{
+    margin-top:20px;
+    color:#888;
+    font-size:14px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>🌸 20/10 🌸</h1>
+    <p>20-10 phải húp nha iemm!</p>
+    <div class="img-box">
+      <img src="snake.jpg" alt="Hoa">
+    </div>
+
+    <!-- Thêm phần điều khiển nhạc -->
+    <div class="controls">
+      <button id="toggleMusic">Tắt nhạc 🔇</button>
+      <input id="volumeControl" type="range" min="0" max="1" step="0.01" value="0.3">
+    </div>
+
+    <div class="footer">Hapi hapi hapi hapi 🌸🌹💐🌻🌷🌺🌼</div>
+  </div>
+
+  <audio id="bgm" src="bgmusic.mp3" autoplay muted loop></audio>
+
+<script>
+  const audio = document.getElementById('bgm');
+  const toggleBtn = document.getElementById('toggleMusic');
+  const volumeControl = document.getElementById('volumeControl');
+
+  // Tự bật tiếng nhẹ nhàng sau khi load
+  window.addEventListener('load', ()=>{
+    setTimeout(()=>{
+      audio.muted = false;
+      audio.volume = 0.3;
+      audio.play().catch(()=>{});
+    }, 1000);
+  });
+
+  // Nút bật/tắt nhạc
+  toggleBtn.addEventListener('click', ()=>{
+    if (audio.paused){
+      audio.play();
+      toggleBtn.textContent = 'Tắt nhạc 🔇';
+    } else {
+      audio.pause();
+      toggleBtn.textContent = 'Bật nhạc 🔊';
+    }
+  });
+
+  // Thanh điều chỉnh âm lượng
+  volumeControl.addEventListener('input', (e)=>{
+    audio.volume = e.target.value;
+  });
+</script>
+</body>
+</html>
